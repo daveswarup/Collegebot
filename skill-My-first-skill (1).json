@@ -1,0 +1,606 @@
+{
+  "intents": [
+    {
+      "intent": "department",
+      "examples": [
+        {
+          "text": "branch"
+        },
+        {
+          "text": "department please"
+        },
+        {
+          "text": "details of department"
+        },
+        {
+          "text": "electrical engineering"
+        },
+        {
+          "text": "how many branches"
+        },
+        {
+          "text": "what are the department?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "facility",
+      "examples": [
+        {
+          "text": "accomodation"
+        },
+        {
+          "text": "dorm"
+        },
+        {
+          "text": "facility"
+        },
+        {
+          "text": "hostel"
+        },
+        {
+          "text": "library"
+        },
+        {
+          "text": "support"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Greetings",
+      "examples": [
+        {
+          "text": "GA"
+        },
+        {
+          "text": "GE"
+        },
+        {
+          "text": "GM"
+        },
+        {
+          "text": "Good Afternoon"
+        },
+        {
+          "text": "Good Evening"
+        },
+        {
+          "text": "Good Morning"
+        },
+        {
+          "text": "GUd MNG"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "HI"
+        },
+        {
+          "text": "Hola"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "department",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "branch",
+          "synonyms": [
+            "branches",
+            "department",
+            "section"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "department",
+          "synonyms": [
+            "departments",
+            "dept",
+            "faculty"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "facility",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "facility",
+          "synonyms": [
+            "building",
+            "campus",
+            "center",
+            "facilities"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Greetings",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Good Afternoon",
+          "synonyms": [
+            "Afternoon",
+            "GA",
+            "GUD AFN"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Evening",
+          "synonyms": [
+            "GE",
+            "Gud Evg"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Morning",
+          "synonyms": [
+            "GM",
+            "Gud MNG",
+            "Gud Morning"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Hello",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Hi",
+          "synonyms": [
+            "Hee"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "hostel",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "hostel",
+          "synonyms": [
+            "dorm",
+            "dormitory",
+            "guesthouse",
+            "hostels",
+            "lodging"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "library",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Library",
+          "synonyms": [
+            "archives",
+            "bookmobile",
+            "collection",
+            "librarian",
+            "libraries",
+            "repository"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sex",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "boy",
+          "synonyms": [
+            "lad",
+            "man"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "girl",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "subbranch",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Computer Science engineering",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Electrical and Electronics Engineering",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Electrical Engineering",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Electronics and communication Engineering",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_4_1601802144194",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Greetings || @Greetings",
+      "dialog_node": "node_4_1601790972113",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#facility || @facility",
+      "dialog_node": "node_4_1601802144194",
+      "previous_sibling": "node_9_1601796347122"
+    },
+    {
+      "type": "standard",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#department || @department",
+      "dialog_node": "node_9_1601796347122",
+      "previous_sibling": "node_4_1601790972113"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The library has been built to maintain unique standards. Specialized collections of Books, Journals & Non-book materials are available in Basic Sciences, Engineering and Technology, Humanities and Social Sciences. It has well over 17,715 Volumes of books and subscribes to many important journals, national and international. The library remains open throughout the week. Students can issue books from the library under three different schemes. They are  (a) Regular issue, (b) Book Bank issue and (c) Overnight issue. The library activities and services are fully automated using ERP (Fedena) software. The library is well equipped with modem facilities and resources (print and electronic) in the forms of non-book materials around 500 CDs, 31 Video Cassettes and 105 Audio Cassettes. The university Subscribes to 165 National and International Journals. The library has access to 500+ e-resources; Apart from college library each department is having a separate library with good collection. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601802144194",
+      "conditions": "@library:Library",
+      "dialog_node": "response_10_1601805176532",
+      "previous_sibling": "response_2_1601805009279"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Evening"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601790972113",
+      "conditions": "@Greetings:(Good Evening)",
+      "dialog_node": "response_1_1601791230922",
+      "previous_sibling": "response_9_1601791197626"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601790972113",
+      "conditions": "@Greetings",
+      "dialog_node": "response_1_1601791282152",
+      "previous_sibling": "response_3_1601791247892"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "lectrical Engineering is a profession that uses science, technology & problem solving skills to design, construct & maintain products. It is a challenging & rewarding area of study. The department of Electrical Engineering was started in the year 2013 with an intake of 60 students. The aim and objective of the department is to create professional Electrical Engineers, who can serve in the fields of core Electrical Engineering and the related areas. Today there is a huge requirement of Electrical Engineers in fields like Steel and Power. This department in GIET has a good number of well experienced and qualified faculty members sincerely guiding their students for core technical knowledge, project work and research. . It is endowed with well-equipped labs which meets the standards specified by the A.I.C.T.E. norms. The intake was further enhanced to 120 in 1998."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1601796347122",
+      "conditions": "@subbranch:(Electrical Engineering)",
+      "dialog_node": "response_1_1601803657034",
+      "previous_sibling": "response_4_1601796371927"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The university provides facilities like gyms, transportation, hostels, swimming pools, cafes, cafeteria, dine outs and restaurant."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601802144194",
+      "conditions": "@facility",
+      "dialog_node": "response_2_1601805009279"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Instruction for hostel boarders The Boarders along with parent only have to report to the respective hostel for admission process. The list of allotment is available in website and hostel office.  List of documents and Items required. Hostel admission form (to be provided at the time of hostel occupancy) duly filled in with photo of candidate, parents/Guardian.  Aadhar number of candidate and parents with true copy of it.  Local guardian information duly completed and with photo of Local guardian & signature.  Photographs of candidate -6 Nos.  Copy of money receipt towards payment of hostel fees and mess fees.  Hostel will provide  bed, study table, chair and cupboard.   Boarders have to bring the following materials. Mattress, Pillow,single Bed sheets,pillow cover & Mosquito net.  Blanket  Bucket, Mug, Hangers.  One medium sized trunk /Bag with Lock & Key (Two nos. for cupboard & Trunk)  No electrical gadgets like Fan, iron, water heater,induction cooker etc is allowed.   NOTE: Hostel shall not be held responsible for any loss.  For any query, contact Dr. Ranjan Kumar Mallick (Chief Warden) - 7978045548-  Mr. Lalit Mohan Satapathy, - 9861140484 -  Mr. Tanmoy Parida - 9776150392"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601802144194",
+      "conditions": "@hostel:hostel",
+      "dialog_node": "response_2_1601806740140",
+      "previous_sibling": "response_10_1601805176532"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Afternoon"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601790972113",
+      "conditions": "@Greetings:(Good Afternoon)",
+      "dialog_node": "response_3_1601791247892",
+      "previous_sibling": "response_1_1601791230922"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The department are\nElectrical Engineering\nElectrical and Electronics Engineering\nElectronics and Communication engineering\nComputer Science Engineering"
+              },
+              {
+                "text": ""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1601796347122",
+      "conditions": "@department:department",
+      "dialog_node": "response_4_1601796371927"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The Department of Computer Science and Engineering acts as the nurturing ground for young professionals who can make their mark and to create a talent pool for various industries. The basic aim of the department is to advance, evolve and enhance computer science and software engineering fundamentals to build the intellectuals capital of research and students. The department focuses on the study of theoretical foundation of information and computation and of practical techniques for its implementations and opportunity in computer science. This department in GIET, has qualified faculty members along with number of well equipped laboratories."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1601796347122",
+      "conditions": "@subbranch:(Computer Science engineering)",
+      "dialog_node": "response_4_1601804131203",
+      "previous_sibling": "response_9_1601804074012"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "In the rapid development in Electronics and Communications initiated the inception of a separate department at GIET, Bhubaneswar since 2009 for imparting state-of-the-art knowledge in Electronics and Communication Engineering and allied areas. The department runs with a mission to shape graduates into hardcore professionals who would become effective leaders and noteworthy innovators in the technology areas of Electronics and Communication Engineering and Knowledge Engineering. It also motivate and encourage the students to engage in lifelong learning which would help them keep abreast with contemporary developments in their fields of operation and enable them to leverage on the power of knowledge to become outstanding performers in whatever careers they choose. While producing competent professionals and responsible citizens, it is our Endeavour to ensure that our graduates adhere to ethical values in life and be sensitive to environmental and social issues."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1601796347122",
+      "conditions": "@subbranch:(Electrical and Electronics Engineering)",
+      "dialog_node": "response_7_1601804004187",
+      "previous_sibling": "response_1_1601803657034"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Morning"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601790972113",
+      "conditions": "@Greetings:(Good Morning)",
+      "dialog_node": "response_9_1601791197626"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "In the rapid development in Electronics and Communications initiated the inception of a separate department at GIET, Bhubaneswar since 2009 for imparting state-of-the-art knowledge in Electronics and Communication Engineering and allied areas. The department runs with a mission to shape graduates into hardcore professionals who would become effective leaders and noteworthy innovators in the technology areas of Electronics and Communication Engineering and Knowledge Engineering. It also motivate and encourage the students to engage in lifelong learning which would help them keep abreast with contemporary developments in their fields of operation and enable them to leverage on the power of knowledge to become outstanding performers in whatever careers they choose. While producing competent professionals and responsible citizens, it is our Endeavour to ensure that our graduates adhere to ethical values in life and be sensitive to environmental and social issues."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1601796347122",
+      "conditions": "@subbranch:(Electronics and communication Engineering)",
+      "dialog_node": "response_9_1601804074012",
+      "previous_sibling": "response_7_1601804004187"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. Greetings from Siksha 'O' Anusandhan University. How can i help you? "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
